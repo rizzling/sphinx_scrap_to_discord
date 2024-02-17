@@ -1,0 +1,32 @@
+This is a simple nodeJS bot.
+
+1. Scrape https://community.sphinx.chat/bounties (default timer every 24hrs).
+
+2. Exctract relevant bounty information. 
+
+3. Post new activities on a specific discord channel.
+
+The bot needs a specific DOM element structure to work. Future versions will call the data from an API to avoid scraping and the resulting limits.
+
+RUN IT YOURSELF:
+You need -> node.js@18.16.0 and -> npm@9.6.7 to run the bot
+1. Clone/fork this repo
+2. Create .env file with the following content:
+        DISCORD_BOT_TOKEN=<YOUR_DISCORD_BOT_TOKEN>      <--- create a discord bot here: https://discord.com/developers/
+        DISCORD_CHANNEL_ID=<YOUR_DISCORD_CHANNEL_ID>    <--- easy to copy from discord
+
+If you have never created a discord bot, dont worry, there are tons of short tutorials on youtube and other pages with comprehensive walktroughs and guides.
+
+3. Open a terminal an direct to the cloned repo
+4. Run npm install
+5. Run npm start
+
+The bot should now operate and post the Sphinx bounties in the discord channel.
+Every post gets logged in a JSON file to avoid duplicate posts (if there are no new bounties between two scrapes or if the bot crashes and/or restarts).
+
+The bot code (src/index.js) is commented to give a guide through all its functions.
+
+Used node.js modules:
+-discord.js
+-puppeteer
+-dotenv

@@ -1,0 +1,5 @@
+node_modules/
+.env
+scrap.js
+scrapOPEN.js
+v1.js

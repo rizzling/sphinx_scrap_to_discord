@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.4",
+    "puppeteer": "^22.0.0"
+  },
+  "name": "scrapndiscordbot",
+  "version": "1.0.0",
+  "description": "scrap sphinx bounties & post on discord",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "rizzling",
+  "license": "ISC"
+}
