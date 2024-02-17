@@ -6,7 +6,7 @@
   },
   "name": "scrapndiscordbot",
   "version": "1.0.0",
-  "description": "scrap sphinx bounties & post on discord",
+  "description": "scrape sphinx bounties website & post on discord",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js"
