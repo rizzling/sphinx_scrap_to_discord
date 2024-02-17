@@ -11,7 +11,7 @@ The bot needs a specific DOM element structure to work. Future versions will cal
 RUN IT YOURSELF:
 You need -> node.js@18.16.0 and -> npm@9.6.7 to run the bot
 1. Clone/fork this repo
-2. Create .env file with the following content:
+2. Create .env file with the following content inside the cloned repo:
         DISCORD_BOT_TOKEN=<YOUR_DISCORD_BOT_TOKEN>      <--- create a discord bot here: https://discord.com/developers/
         DISCORD_CHANNEL_ID=<YOUR_DISCORD_CHANNEL_ID>    <--- easy to copy from discord
 
