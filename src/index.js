@@ -31,40 +31,52 @@ async function scrapeBountyURLs() {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    // Navigate to the Sphinx Chat bounties page
     await page.goto('https://community.sphinx.chat/bounties', { waitUntil: 'domcontentloaded' });
 
-    // Wait for the bounty selector to load
+    const filterButtonSelector = '#root > div.app > div > div:nth-child(1) > div > div:nth-child(1) > div:nth-child(2) > div > div';
+    console.log('Open filterbox');
+    await page.waitForSelector(filterButtonSelector);
+    await page.click(filterButtonSelector);
+
+    const filterWindowSelector = '.CheckboxOuter input#Open';
+    console.log('Wait for selector');
+    await page.waitForSelector(filterWindowSelector);
+
+    console.log('Deactivate filter');
+    await page.click(filterWindowSelector);
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    console.log('Close filterbox');
+    await page.keyboard.press('Escape');
+
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    console.log('Loading bounty selector');
     await page.waitForSelector('#root > div.app > div > div:nth-child(2)');
 
     console.log('Extracting bounty URLs...');
 
     const bountyURLs = [];
 
-    // Select all bounty elements on the page
     const bountyElements = await page.$$('#root > div.app > div > div:nth-child(2) > a');
-
-    // Loop through each bounty element
+    
     for (const bountyElement of bountyElements) {
         console.log('Click bounty element');
         await bountyElement.click();
 
-        // Wait for a short duration to ensure the page loads
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-        // Get the URL of the current page (bounty)
         const bountyURL = page.url();
         console.log(bountyURL);
 
-        // Click the back button to go back to the bounty list
         const backButton = '#sphinx-top-level-overlay > div > div > div:nth-child(1) > button';
         await page.click(backButton);
+        await new Promise(resolve => setTimeout(resolve, 600));
 
-        // Add the bounty URL to the array
         bountyURLs.push(bountyURL);
     }
 
-    // Close the Puppeteer browser
     await browser.close();
 
     return bountyURLs;
